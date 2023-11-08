@@ -15,8 +15,16 @@ class TaskForm extends Component
 
     public string $dueDate = '';
 
+    protected $rules = [
+        'title' => 'required|min:6|max:50',
+        'description' => 'required|min:12|max:100',
+        'dueDate' => 'required'
+    ];
 
-    public function submitForm(){   
+
+    public function submitForm(){  
+        
+        $this->validate();
         
         $user_id = auth()->user()->id;
 

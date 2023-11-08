@@ -18,7 +18,9 @@
                 <td>{{$task->title}}</td>
                 <td>{{$task->due_date}}</td>             
                 <td>
-                    <button>Completar</button>
+                    <livewire:components.confirm-button
+                        :taskId="$task->id"
+                    />
                 </td>
             </tr>
         </tbody>
