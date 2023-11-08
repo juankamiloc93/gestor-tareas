@@ -23,12 +23,12 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-Route::view('task-index', 'livewire.pages.task-index')
+Route::get('/task-index', App\Livewire\Pages\TaskIndex::class)
     ->middleware(['auth', 'verified'])
     ->name('task-index');
 
 Route::view('task-create', 'livewire.pages.task-create')
     ->middleware(['auth', 'verified'])
-    ->name('task-index');
+    ->name('task-create');
 
 require __DIR__.'/auth.php';
