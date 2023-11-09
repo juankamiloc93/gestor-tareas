@@ -2,9 +2,11 @@
 
 namespace App\Livewire\Forms;
 
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 use App\Models\Task;
+use App\Mail\CreatedTaskMail;
 
 class TaskForm extends Component
 {
@@ -27,6 +29,7 @@ class TaskForm extends Component
         $this->validate();
         
         $user_id = auth()->user()->id;
+        $email = auth()->user()->email;
 
         $task = new Task();
 
@@ -38,8 +41,9 @@ class TaskForm extends Component
 
         $task->save();
 
-        session()->flash('flash.banner', "Tarea creada! ");
-
+        Mail::to($email)
+            ->send(new CreatedTaskMail());
+   
         return $this->redirect('/task-index');
 
     }
